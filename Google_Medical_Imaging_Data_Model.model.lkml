@@ -7,7 +7,7 @@ include: "/views/**/*.view"            # include all views in the views/ folder 
 # # Select the views that should be a part of this model,
 # # and define the joins that connect them together.
 #
-explore: instance {
+explore: instance{
   # join: study {
   #   type: left_outer
   #   sql_on: ${study.StudyInstanceUID} = ${instance.SOP_instance_uid} ;;
@@ -20,9 +20,9 @@ explore: instance {
     relationship: many_to_one
   }
 
-  # join: modality  {
-  #   type: left_outer
-  #   sql_on: ${patient.PatientID}  = ${modality.PatientID} ;;
-  #   relationship: many_to_one
-  # }
+  join: study {
+    type: left_outer
+    sql_on: ${study.Study_Instance_UID} = ${instance.study_instance_uid} ;;
+    relationship: many_to_one
+  }
 }

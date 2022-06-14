@@ -7,7 +7,7 @@ view: study {
 dimension: Study_Instance_UID {
   primary_key: yes
   type: string
-  sql: ${TABLE}.StudyInstanceUID ;;
+  sql: ${TABLE}.studies ;;
 }
 
 dimension: Study_Description {
@@ -17,7 +17,7 @@ dimension: Study_Description {
 
 dimension: Collection_id {
   type: string
-  sql: ${TABLE}.Collection_id ;;
+  sql: ${TABLE}.collections ;;
 }
 
   dimension_group: Study_Date {
@@ -32,7 +32,7 @@ dimension: Collection_id {
     ]
     convert_tz: no
     datatype: date
-    sql: ${TABLE}.StudyDate ;;
+    sql: ${TABLE}.study_date ;;
   }
 
 
@@ -53,7 +53,7 @@ dimension: collection_page_URL {
 
 dimension: SeriesInstanceUID {
   type: string
-  sql: ${TABLE}.SeriesInstanceUID ;;
+  sql: ${TABLE}.series ;;
 }
 
 dimension: SeriesDescription {
