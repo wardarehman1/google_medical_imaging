@@ -4,22 +4,26 @@ view: series {
 
 
 dimension: SeriesInstanceUID {
+  group_label: "Series Details"
   primary_key: yes
   type: string
   sql: ${TABLE}.SeriesInstanceUID ;;
 }
 
 dimension: StudyDescription {
+  group_label: "Study Details"
   type: string
   sql: ${TABLE}.StudyDescription ;;
 }
 
 dimension: StudyInstanceUID {
+  group_label: "Study Details"
   type: string
   sql: ${TABLE}.StudyInstanceUID ;;
 }
 
   dimension_group: StudyDate {
+    group_label: "Study Details"
     type: time
     timeframes: [
       raw,
@@ -36,52 +40,62 @@ dimension: StudyInstanceUID {
 
 
 dimension: study_viewer_URL {
+  group_label: "Study Details"
   type: string
   sql: ${TABLE}.study_viewer_URL ;;
 }
 
 
 dimension: SeriesDescription {
+  group_label: "Series Details"
   type: string
   sql: ${TABLE}.SeriesDescription ;;
 }
 
 dimension: tcia_cancerType {
+  group_label: "Cancer Details"
   type: string
   sql: ${TABLE}.tcia_cancerType ;;
 }
 
 dimension: tcia_tumorLocation {
+  group_label: "Cancer Details"
   type: string
   sql: ${TABLE}.tcia_tumorLocation ;;
 }
 
   dimension: manufacturer_model_name {
+    group_label: "Manufacturer Details"
     type: string
     sql: ${TABLE}.Manufacturer_Model_Name ;;
   }
 
   dimension: manufacturer {
+    group_label: "Manufacturer Details"
     type: string
     sql: ${TABLE}.Manufacturer ;;
   }
 
   dimension: StudyComments {
+    group_label: "Study Details"
     type: string
     sql: ${TABLE}.StudyComments ;;
   }
 
   dimension: ContrastBolusAgent {
+    group_label: "ContrastBolusAgent Details"
     type: string
     sql: ${TABLE}.ContrastBolusAgent ;;
   }
 
   dimension: BodyPartExamined {
+    group_label: "Patient Details"
     type: string
     sql: ${TABLE}.BodyPartExamined ;;
   }
 
   dimension: SliceThickness {
+    group_label: "Patient Details"
     type: string
     sql: ${TABLE}.SliceThickness ;;
   }
@@ -102,6 +116,7 @@ dimension: tcia_tumorLocation {
   }
 
   dimension: ContrastBolusIngredient {
+    group_label: "ContrastBolusAgent Details"
     type: string
     sql: ${TABLE}.ContrastBolusIngredient ;;
   }
@@ -112,11 +127,13 @@ dimension: tcia_tumorLocation {
   }
 
   dimension: ContrastBolusRoute {
+    group_label: "ContrastBolusAgent Details"
     type: string
     sql: ${TABLE}.ContrastBolusRoute ;;
   }
 
   dimension: ContrastBolusTotalDose {
+    group_label: "ContrastBolusAgent Details"
     type: string
     sql: ${TABLE}.ContrastBolusTotalDose ;;
   }

@@ -64,7 +64,7 @@ view: image {
     value_format: "[>=1000000]0,,\"M\";[>=1000]0,\"K\";0"
   }
 
-  measure: sizeondisk {
+  measure: count_size_on_disk {
     type: sum
     sql: ${size_on_disk} ;;
     value_format: "[>=1000000000000]0,,,,\"T\";[>=1000000000]0,,,\"B\";0"

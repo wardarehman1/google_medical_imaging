@@ -1,6 +1,5 @@
 view: patient {
-  sql_table_name: `g-medical-imaging.presentation.patient`
-    ;;
+  sql_table_name: `g-medical-imaging.presentation.patient`;;
   drill_fields: [PatientId]
 
   dimension: PatientId {
