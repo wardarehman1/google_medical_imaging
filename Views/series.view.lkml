@@ -121,10 +121,6 @@ dimension: tcia_tumorLocation {
     sql: ${TABLE}.ContrastBolusIngredient ;;
   }
 
-  dimension: AnatomicRegionSequence {
-    type: string
-    sql: ${TABLE}.AnatomicRegionSequence ;;
-  }
 
   dimension: ContrastBolusRoute {
     group_label: "ContrastBolusAgent Details"
