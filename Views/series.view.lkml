@@ -1,26 +1,25 @@
-
-view: study {
+view: series {
   # Or, you could make this view a derived table, like this:
-  sql_table_name:`g-medical-imaging.Presentation_Layer.study`;;
+  sql_table_name:`g-medical-imaging.presentation.series`;;
 
 
-dimension: Study_Instance_UID {
+dimension: SeriesInstanceUID {
   primary_key: yes
   type: string
-  sql: ${TABLE}.studies ;;
+  sql: ${TABLE}.SeriesInstanceUID ;;
 }
 
-dimension: Study_Description {
+dimension: StudyDescription {
   type: string
   sql: ${TABLE}.StudyDescription ;;
 }
 
-dimension: Collection_id {
+dimension: StudyInstanceUID {
   type: string
-  sql: ${TABLE}.collections ;;
+  sql: ${TABLE}.StudyInstanceUID ;;
 }
 
-  dimension_group: Study_Date {
+  dimension_group: StudyDate {
     type: time
     timeframes: [
       raw,
@@ -32,29 +31,15 @@ dimension: Collection_id {
     ]
     convert_tz: no
     datatype: date
-    sql: ${TABLE}.study_date ;;
+    sql: ${TABLE}.StudyDate ;;
   }
 
-
-dimension: ClinicalTrialSponsorName {
-  type: string
-  sql: ${TABLE}.ClinicalTrialSponsorName ;;
-}
 
 dimension: study_viewer_URL {
   type: string
   sql: ${TABLE}.study_viewer_URL ;;
 }
 
-dimension: collection_page_URL {
-  type: string
-  sql: ${TABLE}.collection_page_URL ;;
-}
-
-dimension: SeriesInstanceUID {
-  type: string
-  sql: ${TABLE}.series ;;
-}
 
 dimension: SeriesDescription {
   type: string
@@ -70,6 +55,93 @@ dimension: tcia_tumorLocation {
   type: string
   sql: ${TABLE}.tcia_tumorLocation ;;
 }
+
+  dimension: manufacturer_model_name {
+    type: string
+    sql: ${TABLE}.Manufacturer_Model_Name ;;
+  }
+
+  dimension: manufacturer {
+    type: string
+    sql: ${TABLE}.Manufacturer ;;
+  }
+
+  dimension: StudyComments {
+    type: string
+    sql: ${TABLE}.StudyComments ;;
+  }
+
+  dimension: ContrastBolusAgent {
+    type: string
+    sql: ${TABLE}.ContrastBolusAgent ;;
+  }
+
+  dimension: BodyPartExamined {
+    type: string
+    sql: ${TABLE}.BodyPartExamined ;;
+  }
+
+  dimension: SliceThickness {
+    type: string
+    sql: ${TABLE}.SliceThickness ;;
+  }
+
+  dimension: KVP {
+    type: string
+    sql: ${TABLE}.KVP ;;
+  }
+
+  dimension: ClinicalTrialSponsorName {
+    type: string
+    sql: ${TABLE}.ClinicalTrialSponsorName ;;
+  }
+
+  dimension: MultiPlanarExcitation {
+    type: string
+    sql: ${TABLE}.MultiPlanarExcitation ;;
+  }
+
+  dimension: ContrastBolusIngredient {
+    type: string
+    sql: ${TABLE}.ContrastBolusIngredient ;;
+  }
+
+  dimension: AnatomicRegionSequence {
+    type: string
+    sql: ${TABLE}.AnatomicRegionSequence ;;
+  }
+
+  dimension: ContrastBolusRoute {
+    type: string
+    sql: ${TABLE}.ContrastBolusRoute ;;
+  }
+
+  dimension: ContrastBolusTotalDose {
+    type: string
+    sql: ${TABLE}.ContrastBolusTotalDose ;;
+  }
+
+  dimension: ScanningSequence {
+    type: string
+    sql: ${TABLE}.ScanningSequence ;;
+  }
+
+  dimension: Modality {
+    type: string
+    sql: ${TABLE}.Modality ;;
+  }
+
+  dimension: collection_id {
+    type: string
+    sql: ${TABLE}.collection_id ;;
+  }
+
+  dimension: Source_DOI {
+    type: string
+    sql: ${TABLE}.Source_DOI ;;
+  }
+
+
 
   # # You can specify the table name if it's different from the view name:
   # sql_table_name: my_schema_name.tester ;;
