@@ -1,5 +1,5 @@
 view: image {
-  sql_table_name: `g-medical-imaging.presentation.image`;;
+  sql_table_name: `g-medical-imaging.presentation.image_V1`;;
   drill_fields: [SOPInstanceUID]
 
   dimension: SOPInstanceUID {
