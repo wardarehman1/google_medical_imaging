@@ -64,10 +64,10 @@ dimension: tcia_tumorLocation {
   sql: ${TABLE}.tcia_tumorLocation ;;
 }
 
-  dimension: manufacturer_model_name {
+  dimension: ManufacturerModelName {
     group_label: "Manufacturer Details"
     type: string
-    sql: ${TABLE}.Manufacturer_Model_Name ;;
+    sql: ${TABLE}.ManufacturerModelName ;;
   }
 
   dimension: manufacturer {

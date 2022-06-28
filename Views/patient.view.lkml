@@ -14,18 +14,30 @@ view: patient {
   }
 
   dimension: PatientAge {
-    type: string
+    type: tier
+    tiers: [0,10,20,30,40,50,60,70,80]
+    style: integer
     sql: ${TABLE}.PatientAge ;;
   }
 
+
   dimension: PatientWeight {
-    type: string
+    type: tier
+    tiers: [20,30,40,50,60,70,80,90,100,120,130,140,150]
+    style: integer
     sql: ${TABLE}.PatientWeight ;;
   }
 
   dimension: PatientAddressState{
     type: string
+    map_layer_name: countries
     sql: ${TABLE}.PatientAddressState ;;
+  }
+
+  dimension: country {
+    type: string
+
+    sql: ${TABLE}.country ;;
   }
 
   dimension: EthnicGroup {
