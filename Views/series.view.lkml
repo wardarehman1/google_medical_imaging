@@ -1,6 +1,6 @@
 view: series {
   # Or, you could make this view a derived table, like this:
-  sql_table_name:`g-medical-imaging.presentation.series_V1`;;
+  sql_table_name:`g-medical-imaging.presentation.series_v1`;;
 
 
 dimension: SeriesInstanceUID {
