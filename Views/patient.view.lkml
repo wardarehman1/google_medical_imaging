@@ -30,7 +30,7 @@ view: patient {
 
   dimension: PatientAddressState{
     type: string
-    map_layer_name: countries
+    map_layer_name: us_states
     sql: ${TABLE}.PatientAddressState ;;
   }
 
