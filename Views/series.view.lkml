@@ -45,7 +45,7 @@ dimension: study_viewer_URL {
   sql: ${TABLE}.study_viewer_URL ;;
   link: {
     label: "Images"
-    url: "www.google.com"
+    url: "{{study_viewer_URL}}"
   }
 }
 
