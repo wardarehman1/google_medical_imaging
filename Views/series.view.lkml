@@ -43,7 +43,12 @@ dimension: study_viewer_URL {
   group_label: "Study Details"
   type: string
   sql: ${TABLE}.study_viewer_URL ;;
+  link: {
+    label: "Images"
+    url: "www.google.com"
+  }
 }
+
 
 
 dimension: SeriesDescription {

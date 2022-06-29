@@ -59,5 +59,6 @@ view: patient {
   measure: count {
     type: count
     drill_fields: [PatientId]
+    value_format: "[>=1000000]0,,\"M\";[>=1000]0,\"K\";0"
   }
 }

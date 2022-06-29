@@ -1,5 +1,5 @@
 view: image {
-  sql_table_name: `g-medical-imaging.presentation.image_V1`;;
+  sql_table_name: `g-medical-imaging.presentation.image_v1`;;
   drill_fields: [SOPInstanceUID]
 
   dimension: SOPInstanceUID {
@@ -89,6 +89,11 @@ view: image {
   }
 
 
+  measure: images {
+    type: count_distinct
+    sql: ${study_viewer_URL} ;;
+    value_format: "[>=1000000]0,,\"M\";[>=1000]0,\"K\";0"
+  }
 
 
 
