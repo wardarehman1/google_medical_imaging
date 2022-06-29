@@ -49,8 +49,6 @@ dimension: study_viewer_URL {
   }
 }
 
-
-
 dimension: SeriesDescription {
   group_label: "Series Details"
   type: string
