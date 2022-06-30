@@ -36,6 +36,10 @@ view: image {
   dimension: study_viewer_URL {
     type: string
     sql: ${TABLE}.study_viewer_URL ;;
+    link: {
+      label: "Image"
+      url: "{{value}}"
+    }
   }
 
   dimension: size_on_disk {
