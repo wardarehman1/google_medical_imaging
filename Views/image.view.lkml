@@ -39,7 +39,7 @@ view: image {
     sql: ${TABLE}.study_viewer_URL ;;
     link: {
       label: "Images"
-      url: "{{study_viewer_URL}}"
+      url: "{{value}}"
     }
   }
 
