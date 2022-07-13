@@ -34,8 +34,13 @@ view: image {
   }
 
   dimension: study_viewer_URL {
+    group_label: "Study Details"
     type: string
     sql: ${TABLE}.study_viewer_URL ;;
+    link: {
+      label: "Images"
+      url: "{{study_viewer_URL}}"
+    }
   }
 
   dimension: size_on_disk {
@@ -94,7 +99,6 @@ view: image {
     sql: ${study_viewer_URL} ;;
     value_format: "[>=1000000]0,,\"M\";[>=1000]0,\"K\";0"
   }
-
 
 
 
