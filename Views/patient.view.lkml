@@ -23,7 +23,7 @@ view: patient {
 
   dimension: PatientWeight {
     type: tier
-    tiers: [20,30,40,50,60,70,80,90,100,120,130,140,150]
+    tiers: [20,30,40,50,60,70,80,90,100,120,130,140,150,160,170,180,190,200,210,220]
     style: integer
     sql: ${TABLE}.PatientWeight ;;
   }
