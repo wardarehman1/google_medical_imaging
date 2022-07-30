@@ -41,6 +41,7 @@ view: image {
       label: "Images"
       url: "{{value}}"
     }
+    html: VLINK= "#0b44d6" ;;
   }
 
   dimension: size_on_disk {

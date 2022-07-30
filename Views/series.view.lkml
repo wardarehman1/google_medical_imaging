@@ -1,7 +1,7 @@
 view: series {
   # Or, you could make this view a derived table, like this:
   sql_table_name:`g-medical-imaging.presentation.series_v1`;;
-
+  drill_fields: [SeriesInstanceUID]
 
 dimension: SeriesInstanceUID {
   group_label: "Series Details"
