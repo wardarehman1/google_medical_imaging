@@ -44,6 +44,13 @@ view: image {
     html: VLINK= "#0b44d6" ;;
   }
 
+  dimension: study_viewer_URL_pic {
+    type: string
+    sql: ${study_viewer_URL} ;;
+    html: <p><img height="100" src="https://viewer.imaging.datacommons.cancer.gov/slim/studies/2.25.10002364400405805979841287074388487930"></img></p>
+;;
+  }
+
   dimension: size_on_disk {
     type: number
     sql: ${TABLE}.size_on_disk ;;

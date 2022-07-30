@@ -27,5 +27,8 @@ explore: image{
 #    relationship: many_to_one
 #  }
 
-
 }
+
+explore:  compare_manufacturer{}
+explore:  compare_modality{}
+explore:  compare_location {}
