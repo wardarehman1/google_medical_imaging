@@ -41,7 +41,7 @@ view: image {
       label: "Images"
       url: "{{value}}"
     }
-    html: VLINK= "#0b44d6" ;;
+
   }
 
   dimension: study_viewer_URL_pic {
