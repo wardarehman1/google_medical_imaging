@@ -37,6 +37,18 @@ view: image {
     group_label: "Study Details"
     type: string
     sql: ${TABLE}.study_viewer_URL ;;
+    html: <style>
+   {{value}}:link {
+  color: green;
+  background-color: transparent;
+  text-decoration: none;
+}
+
+{{value}}:visited {
+  color: pink;
+  background-color: transparent;
+  text-decoration: none;
+};;
     link: {
       label: "Images"
       url: "{{value}}"
