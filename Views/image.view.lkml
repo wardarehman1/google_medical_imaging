@@ -41,7 +41,15 @@ view: image {
       label: "Images"
       url: "{{value}}"
     }
+  }
 
+  dimension: gcs_url {
+    type: string
+    sql: ${TABLE}.gcs_url ;;
+    link: {
+      label: "gcs_url"
+      url: "{{value}}"
+    }
   }
 
   dimension: study_viewer_URL_pic {
