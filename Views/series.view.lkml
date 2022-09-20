@@ -1,7 +1,123 @@
 view: series {
   # Or, you could make this view a derived table, like this:
-  sql_table_name:`g-medical-imaging.presentation.series_v1`;;
-  drill_fields: [SeriesInstanceUID]
+  #sql_table_name:`g-medical-imaging.presentation.series_v1`;;
+  derived_table: {
+    sql:with CTE as(
+        select
+          dicom.SeriesInstanceUID,
+          dicom.SeriesDescription,
+          dicom.StudyInstanceUID,
+          dicom.StudyDescription,
+          dicom.StudyDate,
+          dicom.StudyStatusID,
+          dicom.StudyComments,
+          dicom.ManufacturerModelName,
+          dicom.Manufacturer,
+            case when dicom.MultiPlanarExcitation ='Yes' then null end as MultiPlanarExcitation,
+            case when dicom.ContrastBolusAgent='OMNIPAQUE' then null end as ContrastBolusAgent,
+            case when dicom.ContrastBolusIngredient ='IODINE' then null end as ContrastBolusIngredient,
+            case when dicom.ContrastBolusRoute ='Oral&IV' then null end as ContrastBolusRoute,
+            case when dicom.ContrastBolusTotalDose='80' then null end as ContrastBolusTotalDose,
+          ARRAY_TO_STRING(dicom.ScanningSequence, "Null") as ScanningSequence,
+          dicom.ScanArc,
+          dicom.ScanLength,
+          dicom.Modality,
+          dicom.tcia_tumorLocation,
+          dicom.tcia_cancerType,
+          dicom.collection_id,
+          dicom.Source_DOI,
+          dicom.ClinicalTrialSponsorName,
+          dicom.BodyPartExamined,
+          dicom.SliceThickness,
+          dicom.KVP
+        FROM `bigquery-public-data.idc_current.dicom_all` dicom
+),
+      CTE2 as
+(
+        select
+          CTE.SeriesInstanceUID,
+          CTE.SeriesDescription,
+          CTE.StudyInstanceUID,
+          CTE.StudyDescription,
+          CTE.StudyDate,
+          CTE.StudyStatusID,
+          CTE.StudyComments,
+          CTE.ManufacturerModelName,
+          CTE.Manufacturer,
+        case
+
+            when CTE.MultiPlanarExcitation is null then fhoffa.x.random_int(0,3)
+            else fhoffa.x.random_int(0,3)
+            end as MultiPlanarExcitation,
+        case
+
+            when CTE.ContrastBolusAgent is null then fhoffa.x.random_int(0,7)
+            else fhoffa.x.random_int(0,7)
+            end as ContrastBolusAgent,
+        case
+
+            when CTE.ContrastBolusIngredient is null then fhoffa.x.random_int(0,7)
+            else fhoffa.x.random_int(0,7)
+            end as ContrastBolusIngredient,
+        case
+
+            when CTE.ContrastBolusRoute is null then fhoffa.x.random_int(0,7)
+            else fhoffa.x.random_int(0,7)
+            end as ContrastBolusRoute,
+          CTE.ScanningSequence,
+          CTE.ScanArc,
+          CTE.ScanLength,
+          CTE.Modality,
+          CTE.tcia_tumorLocation,
+          CTE.tcia_cancerType,
+          CTE.collection_id,
+          CTE.Source_DOI,
+          CTE.ClinicalTrialSponsorName,
+          CTE.BodyPartExamined,
+          CTE.SliceThickness,
+          CTE.KVP
+        from CTE
+)
+
+        select
+          CTE2.SeriesInstanceUID,
+          CTE2.SeriesDescription,
+          CTE2.StudyInstanceUID,
+          CTE2.StudyDescription,
+          CTE2.StudyDate,
+          CTE2.StudyStatusID,
+          CTE2.StudyComments,
+          CTE2.ManufacturerModelName,
+          CTE2.Manufacturer,
+          mpe.MultiPlanarExcitationType as MultiPlanarExcitation,
+          cba.ContrastBolusAgentType as ContrastBolusAgent,
+          cbi.ContrastBolusIngredientTYPE as ContrastBolusIngredient,
+          cbd.ContrastBolusTotalDoseTYPE as ContrastBolusTotalDose,
+          cbr.ContrastBolusRouteTYPE as ContrastBolusRoute,
+          CTE2.ScanningSequence,
+          CTE2.ScanArc,
+          CTE2.ScanLength,
+          CTE2.Modality,
+          CTE2.tcia_tumorLocation,
+          CTE2.tcia_cancerType,
+          CTE2.collection_id,
+          CTE2.Source_DOI,
+          CTE2.ClinicalTrialSponsorName,
+          CTE2.BodyPartExamined,
+          CTE2.SliceThickness,
+          CTE2.KVP
+        from CTE2
+        left join `g-medical-imaging.landing.MultiPlanarExcitation`  mpe on mpe.MultiPlanarExcitationID=CTE2.MultiPlanarExcitation
+        left join `g-medical-imaging.landing.ContrastBolusAgent` cba on cba.ContrastBolusAgentID=CTE2.ContrastBolusAgent
+        left join `g-medical-imaging.landing.ContrastBolusIngredient` cbi on cbi.ContrastBolusIngredientID=CTE2.ContrastBolusIngredient
+        left join `g-medical-imaging.landing.ContrastBolusTotalDose` cbd on cbd.ContrastBolusTotalDoseID=CTE2.ContrastBolusRoute
+        left join `g-medical-imaging.landing.ContrastBolusRoute` cbr on cbr.ContrastBolusRouteID=CTE2.ContrastBolusRoute;;
+
+    persist_for: "48 hours"
+    #datagroup_trigger: GMI_default_datagroup
+  }
+
+drill_fields: [SeriesInstanceUID]
 
 dimension: SeriesInstanceUID {
   group_label: "Series Details"
