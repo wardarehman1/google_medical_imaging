@@ -216,6 +216,11 @@ dimension: tcia_tumorLocation {
     sql: ${TABLE}.SliceThickness ;;
   }
 
+  dimension: studystatusID {
+    type: string
+    sql: ${TABLE}.StudyStatusID ;;
+  }
+
   dimension: KVP {
     type: string
     sql: ${TABLE}.KVP ;;
@@ -258,11 +263,6 @@ dimension: tcia_tumorLocation {
   dimension: Modality {
     type: string
     sql: ${TABLE}.Modality ;;
-  }
-
-  dimension: collection_id {
-    type: string
-    sql: ${TABLE}.collection_id ;;
   }
 
   dimension: Source_DOI {
