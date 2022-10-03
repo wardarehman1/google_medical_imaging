@@ -16,7 +16,8 @@ view: image {
               a.InstanceCreationDate,
             IF(a.Modality = "SM", CONCAT("https://viewer.imaging.datacommons.cancer.gov/slim/studies/", a.StudyInstanceUID),
               CONCAT("https://viewer.imaging.datacommons.cancer.gov/viewer/", a.StudyInstanceUID)) as study_viewer_URL,
-              a.PatientID,
+              a.gcs_url,
+              a.PatientID
             FROM `bigquery-public-data.idc_current.dicom_all` a),
 
         CTE1 as (
@@ -30,6 +31,7 @@ view: image {
               end as SegmentationType,
               p.InstanceCreationDate,
               p.study_viewer_URL,
+              p.gcs_url,
               p.PatientID
             from CTE p
             )
