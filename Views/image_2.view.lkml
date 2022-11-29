@@ -1,45 +1,6 @@
-view: image {
-  #sql_table_name: `g-medical-imaging.presentation.image_v1`;;
-  derived_table: {
-    sql:with CTE as
-          (
-            select
-              a.StudyInstanceUID,
-              a.SeriesInstanceUID,
-              a.SOPInstanceUID,
-            case
-              when a.SegmentationType = 'Binary' then 1
-              when a.SegmentationType = 'Fractional' then 0
-              when a.SegmentationType is null then fhoffa.x.random_int(0,2)
-              else fhoffa.x.random_int(0,2)
-                end as SegmentationType,
-              a.InstanceCreationDate,
-            IF(a.Modality = "SM", CONCAT("https://viewer.imaging.datacommons.cancer.gov/slim/studies/", a.StudyInstanceUID),
-              CONCAT("https://viewer.imaging.datacommons.cancer.gov/viewer/", a.StudyInstanceUID)) as study_viewer_URL,
-              a.gcs_url,
-              a.PatientID
-            FROM `bigquery-public-data.idc_current.dicom_all` a),
+  view: image_2 {
 
-        CTE1 as (
-            select
-              p.StudyInstanceUID,
-              p.SeriesInstanceUID,
-              p.SOPInstanceUID,
-            case
-            when safe_cast(p.SegmentationType as string) = '0' then 'Binary'
-            when safe_cast(p.SegmentationType as string) = '1' then 'Fractional'
-              end as SegmentationType,
-              p.InstanceCreationDate,
-              p.study_viewer_URL,
-              p.gcs_url,
-              p.PatientID
-            from CTE p
-            )
-              select * from CTE1;;
-    persist_for: "48 hours"
-    #persist_for: "24 hours"  ## Best practice would be to use `datagroup_trigger: ecommerce_etl` but we don't here for snowflake costs
-    #datagroup_trigger: GMI_default_datagroup
-    }
+  sql_table_name: `g-medical-imaging.presentation.image_v1`;;
 
   drill_fields: [SOPInstanceUID]
 
@@ -97,7 +58,7 @@ view: image {
     type: string
     sql: ${study_viewer_URL} ;;
     html: <p><img height="100" src="https://viewer.imaging.datacommons.cancer.gov/slim/studies/2.25.10002364400405805979841287074388487930"></img></p>
-;;
+      ;;
   }
 
   dimension: size_on_disk {

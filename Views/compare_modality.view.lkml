@@ -8,7 +8,9 @@ view: compare_modality {
         COUNT(DISTINCT image.study_viewer_URL ) AS image_url
       FROM `g-medical-imaging.presentation.image_v1` AS image
       LEFT JOIN `g-medical-imaging.presentation.series_v1` AS series ON series.SeriesInstanceUID = image.SeriesInstanceUID
-      WHERE (series.tcia_cancerType ) IN ('Sarcomas', 'Soft-tissue Sarcoma', 'Uterine Carcinosarcoma') AND (series.tcia_tumorLocation ) IN ('Chest-Abdomen-Pelvis, Leg, TSpine', 'Extremities', 'Uterus', 'Various (11 locations)') AND (series.BodyPartExamined ) = 'T-spine'
+      WHERE (series.tcia_cancerType ) IN ('Sarcomas', 'Soft-tissue Sarcoma', 'Uterine Carcinosarcoma')
+      AND (series.tcia_tumorLocation ) IN ('Chest-Abdomen-Pelvis, Leg, TSpine', 'Extremities', 'Uterus', 'Various (11 locations)')
+      AND (series.BodyPartExamined ) = 'T-SPINE'
       GROUP BY 1,2
       UNION ALL
       SELECT
@@ -17,7 +19,9 @@ view: compare_modality {
         COUNT(DISTINCT image.study_viewer_URL ) AS image_url
       FROM `g-medical-imaging.presentation.image_v1` AS image
       LEFT JOIN `g-medical-imaging.presentation.series_v1` AS series ON series.SeriesInstanceUID = image.SeriesInstanceUID
-      WHERE (series.tcia_cancerType ) IN ('Sarcomas', 'Soft-tissue Sarcoma', 'Uterine Carcinosarcoma') AND (series.tcia_tumorLocation ) IN ('Chest-Abdomen-Pelvis, Leg, TSpine', 'Extremities', 'Uterus', 'Various (11 locations)') AND (series.BodyPartExamined ) = 'Uterus'
+      WHERE (series.tcia_cancerType ) IN ('Sarcomas', 'Soft-tissue Sarcoma', 'Uterine Carcinosarcoma')
+      AND (series.tcia_tumorLocation ) IN ('Chest-Abdomen-Pelvis, Leg, TSpine', 'Extremities', 'Uterus', 'Various (11 locations)')
+      AND (series.BodyPartExamined ) = 'UTERUS'
       GROUP BY 1,2
       ;;
   }

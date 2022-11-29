@@ -5,9 +5,15 @@ include: "/Views/**/*.view"            # include all views in the views/ folder 
 include: "/Dashboards/**/*.dashboard"
 # include: "my_dashboard.dashboard.lookml"   # include a LookML dashboard called my_dashboard
 
-# # Select the views that should be a part of this model,
-# # and define the joins that connect them together.
-#
+
+
+#datagroup: GMI_default_datagroup {
+#sql_trigger: SELECT MAX(InstanceCreationDate) FROM `g-medical-imaging.presentation.image`;;
+#max_cache_age: "48 hour"
+#}
+
+#persist_with: GMI_default_datagroup
+
 explore: image{
 
   join: series {
@@ -33,3 +39,19 @@ explore: image{
 explore:  compare_manufacturer{}
 explore:  compare_modality{}
 explore:  compare_location {}
+
+
+explore: image_2{
+
+  join: series_2 {
+    type: left_outer
+    sql_on: ${series_2.SeriesInstanceUID} = ${image_2.SeriesInstanceUID} ;;
+    relationship: many_to_one
+  }
+
+  join: patient_2{
+    type: left_outer
+    sql_on: ${image_2.PatientId} = ${patient_2.PatientId} ;;
+    relationship: many_to_one
+  }
+}
