@@ -22,8 +22,8 @@ view: series {
           dicom.ScanArc,
           dicom.ScanLength,
           dicom.Modality,
-          dicom.tcia_tumorLocation,
-          dicom.tcia_cancerType,
+          dicom.collection_tumorLocation,
+          dicom.collection_cancerType,
           dicom.collection_id,
           dicom.Source_DOI,
           dicom.ClinicalTrialSponsorName,
@@ -68,8 +68,8 @@ view: series {
           CTE.ScanArc,
           CTE.ScanLength,
           CTE.Modality,
-          CTE.tcia_tumorLocation,
-          CTE.tcia_cancerType,
+          CTE.collection_tumorLocation,
+          CTE.collection_cancerType,
           CTE.collection_id,
           CTE.Source_DOI,
           CTE.ClinicalTrialSponsorName,
@@ -98,8 +98,8 @@ view: series {
           CTE2.ScanArc,
           CTE2.ScanLength,
           CTE2.Modality,
-          CTE2.tcia_tumorLocation,
-          CTE2.tcia_cancerType,
+          CTE2.collection_tumorLocation,
+          CTE2.collection_cancerType,
           CTE2.collection_id,
           CTE2.Source_DOI,
           CTE2.ClinicalTrialSponsorName,
@@ -171,13 +171,13 @@ dimension: SeriesDescription {
 dimension: tcia_cancerType {
   group_label: "Cancer Details"
   type: string
-  sql: ${TABLE}.tcia_cancerType ;;
+  sql: ${TABLE}.collection_cancerType ;;
 }
 
 dimension: tcia_tumorLocation {
   group_label: "Cancer Details"
   type: string
-  sql: ${TABLE}.tcia_tumorLocation ;;
+  sql: ${TABLE}.collection_tumorLocation ;;
 }
 
   dimension: ManufacturerModelName {
